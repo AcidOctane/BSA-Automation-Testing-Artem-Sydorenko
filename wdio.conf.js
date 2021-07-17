@@ -57,10 +57,18 @@ exports.config = {
       // 5 instances get started at a time.
       maxInstances: 1,
       //
-      browserName: 'chrome',
+          browserName: 'chrome',
+           
       acceptInsecureCerts: true,
       'goog:chromeOptions': {
-        args: ['--disable-notifications'],
+          args: ['--disable-notifications'],
+
+          //added for slow internet connection to avoid image loading
+          'prefs': {
+              'profile': {
+                  'default_content_setting_values': { 'images': 2 }
+              }
+          },
       },
       // If outputDir is provided WebdriverIO can capture driver session logs
       // it is possible to configure which logTypes to include/exclude.
@@ -105,7 +113,7 @@ exports.config = {
   baseUrl: 'http://46.101.234.121',
   //
   // Default timeout for all waitFor* commands.
-  waitforTimeout: 10000,
+  waitforTimeout: 5000,//10000
   //
   // Default timeout in milliseconds for request
   // if browser driver or grid doesn't send response
@@ -145,7 +153,9 @@ exports.config = {
   //
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
-  mochaOpts: {
+
+
+    mochaOpts: {
     ui: 'bdd',
     timeout: 600000,
   },
