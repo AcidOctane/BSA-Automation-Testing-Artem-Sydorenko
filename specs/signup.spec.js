@@ -1,10 +1,10 @@
 const { expect } = require('chai');
 
-const rundomNumber = () => Date.now();
+const randomNumber = () => Date.now();
 
 describe('Registration:', function () {
 
-  xit('should be able to register', async function () {
+  it('should be able to register', async function () {
 
     await browser.setWindowSize(1440, 960);
     await browser.url('/sign-up');
@@ -37,7 +37,7 @@ describe('Registration:', function () {
     await birthDateField.setValue('11/11/1999');
 
     await emailField.waitForDisplayed({ timeout: 5000 });
-    await emailField.setValue(`ArtemSydorenko@gmail.com`);
+    await emailField.setValue(`ArtemSydorenko${randomNumber()}@gmail.com`);
 
     await passwordField.waitForDisplayed({ timeout: 5000 });
     await passwordField.setValue('Pa55word');

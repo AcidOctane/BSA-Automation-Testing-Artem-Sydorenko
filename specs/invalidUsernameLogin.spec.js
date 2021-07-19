@@ -3,7 +3,7 @@ const { expect } = require('chai');
 
 describe('Invalid username Login:', function () {
 
-  xit('should not be able to login', async function () {
+  it('should not be able to login', async function () {
 
     await browser.setWindowSize(1440, 960);
     await browser.url('/sign-in');
