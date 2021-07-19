@@ -1,8 +1,8 @@
 const { expect } = require('chai');
 
-describe('Specility  change:', function () {
+describe('Clinic change:', function () {
 
-    it('should be able to change specilaity in profile settings', async function () {
+    it('should be able to change clinic in profile settings', async function () {
 
         await browser.setWindowSize(1440, 960);
         await browser.url('/sign-in');
@@ -13,11 +13,11 @@ describe('Specility  change:', function () {
         const signInButton = await $('button');
         const myProfileButton = await $('a[href="/user-profile/d040a417-b5bd-4514-a9c1-2049ba554b0b"]')
 
-        const specialityDdl = await $('div[class="selectStyles__placeholder css-1wa3eu0-placeholder"]');
+        const clinicDdl = await $('div[class="selectStyles__single-value css-1uccc91-singleValue"]');
         const buttons = await $$('button[type="submit"]');
 
-        const dentistOption = await $('div.selectStyles__option=dentist');
-        const saveSpecialityBtn = await buttons[0];
+        const clinicOption = await $('div[id="react-select-3-option-2"]');
+        const saveClinicBtn = await $('div[class="styles_selectSubmitWrapper__1VXHA"]');
 
         await emailField.waitForDisplayed({ timeout: 5000 });
         await emailField.setValue(`ArtemSydorenko@gmail.com`);
@@ -48,14 +48,14 @@ describe('Specility  change:', function () {
             { timeout: 5000 },
         );
         
-        //change clinic[]
+        //change speciality[x]
 
-        await specialityDdl.waitForDisplayed({ timeout: 5000 });
-        await specialityDdl.click();
-        await dentistOption.waitForDisplayed({ timeout: 5000 });
-        await dentistOption.click();
-        await saveSpecialityBtn.waitForDisplayed({ timeout: 5000 });
-        await saveSpecialityBtn.click()
+        await clinicDdl.waitForDisplayed({ timeout: 5000 });
+        await clinicDdl.click();
+        await clinicOption.waitForDisplayed({ timeout: 5000 });
+        await clinicOption.click();
+        await saveClinicBtn.waitForDisplayed({ timeout: 10000 });
+        await saveClinicBtn.click()
 
         await browser.waitUntil(
             async function () {
@@ -66,12 +66,12 @@ describe('Specility  change:', function () {
         );
 
 
-        const changedSpeciality = await $('div[class="selectStyles__control css-6h7vey-control"]');
-        await changedSpeciality.waitForDisplayed({ timeout: 5000 });
+        const changedClinic = await $('div[class="selectStyles__single-value css-1uccc91-singleValue"]');
+        await changedClinic.waitForDisplayed({ timeout: 5000 });
 
-        const text = await changedSpeciality.getText();
+        const text = await changedClinic.getText();
 
-        expect(text).to.be.eql('Dentist');
+        expect(text).to.be.eql('The Johns Hopkins Hospital');
       
       
     await browser.reloadSession();

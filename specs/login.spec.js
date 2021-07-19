@@ -15,7 +15,7 @@ describe('Login:', function () {
     const signInButton = await $('button');
 
     await emailField.waitForDisplayed({ timeout: 5000 });
-      await emailField.setValue(`john_admin1@admin.com`);
+    await emailField.setValue(`john_admin1@admin.com`);
 
     await passwordField.waitForDisplayed({ timeout: 5000 });
     await passwordField.setValue('Pa55word');
