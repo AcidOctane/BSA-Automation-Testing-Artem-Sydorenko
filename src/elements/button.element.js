@@ -21,6 +21,18 @@ class Button extends BaseElement {
     await this.waitForVisible(element);
     await element.click();
   }
+
+    async getLabel() {
+        let element;
+        if (this.index) {
+            element = (await $$(this.selector))[this.index];
+        } else {
+            element = await $(this.selector);
+        }
+        await this.waitForVisible(element);
+        let label = await element.getText();
+        return label;
+    }
 }
 
 module.exports = { Button };
