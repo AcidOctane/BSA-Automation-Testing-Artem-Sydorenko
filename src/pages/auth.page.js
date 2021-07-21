@@ -46,10 +46,20 @@ class AuthPage {
             },
             { timeout: 5000 },
         );
+    };
 
+    async wrongLogin({ email, password }) {
+        await this.emailField.setValue(email);
+        await this.passwordField.setValue(password);
+        await this.submitButton.click();
+        await browser.waitUntil(
+            async function () {
+                const url = await browser.getUrl();
+                return url === 'http://46.101.234.121/sign-in';
+            },
+            { timeout: 5000 },
+        );
     }
-
-
 }
 
 module.exports = { AuthPage };

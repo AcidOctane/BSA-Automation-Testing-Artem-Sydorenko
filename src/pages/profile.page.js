@@ -17,13 +17,15 @@ class ProfilePage {
         this.usernameField = new Input('input[name="name"]', 1);
         this.surnameField = new Input('input[name="surname"]');
         this.phoneField = new Input('input[name="phone"]');
+        this.birthDateField = new Input('input[type="text"]', 5)
         this.saveSettingsBtn = new Button('button', 5);
         this.currentName = new Button('span.styles_name__2vTNE', 0);
-        this.currentPhone = new Button('a.styles_text__1HrCV', 0)
+        this.currentPhone = new Button('a.styles_text__1HrCV', 0);
+        this.currentBirthdate = new Button('.styles_date__2rFkK');
+        this.saveSettingsBtn = new Button('button[type="submit"]', 2);
     }
     async setSpeciality() {
         await this.specialityDdl.click();
-        browser.pause(5000);
         await this.ddlOption.click();
         await this.saveSpecialityBtn.click();
     }
@@ -52,23 +54,26 @@ class ProfilePage {
 
     }
 
-    async changeInfo({ name, surname, phone }) {
-        
-        await this.usernameField.setValue(name);
-        await this.surnameField.setValue(surname);
-        await this.phoneField.setValue(phone);
+    async changeInfo({ name, surname, phone, birthday }) {
+        if (name) {
+            await this.usernameField.setValue(name);
+        };
+        if (surname) { 
+            await this.surnameField.setValue(surname);
+        };
+        if (phone) {
+            await this.phoneField.setValue(phone);
+        };
+        if (birthday) {
+            await this.birthDateField.clearValue();
+            await this.birthDateField.setValue(birthday);
+            await browser.keys("Enter");
+        }
 
     }
 
     async saveSettings() {
-        await browser.keys("Enter");
-        await browser.waitUntil(
-            async function () {
-                const url = await browser.getUrl();
-                return url.includes('user-profile');
-            },
-            { timeout: 5000 },
-        );
+        await this.saveSettingsBtn.click()
     }
 
     async getName() {
@@ -79,6 +84,13 @@ class ProfilePage {
     async getPhone() {
         const currentPhone = await this.currentPhone.getLabel();
         return currentPhone;
+    };
+
+    async getBirthdate() {
+        const currentBirthdate = await this.currentBirthdate.getLabel();
+        let date = new Date(currentBirthdate);
+        let formattedDate = date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear();
+        return formattedDate;
     };
 }
 

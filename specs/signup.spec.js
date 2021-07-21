@@ -15,12 +15,12 @@ describe('Registration:', function () {
         await browser.reloadSession();
     });
 
-    xit('should be able to register a new doctor', async function () {
+    it('should be able to register a new doctor', async function () {
 
         await app.authPage.register({
             name: "AStest",
             surname: "AStest",
-            email: `ArtemSydorenko${randomNumber()}@gmail.com`,
+            email: `ArtemSydorenko${randomNumber}@gmail.com`,
             password: "Pa55word",
             phone: "+380991111111",
             birthDate: "12/12/1989",
@@ -40,12 +40,12 @@ describe('Registration:', function () {
 
     });
 
-    xit('should be able to register a new patient', async function () {
+    it('should be able to register a new patient', async function () {
 
         await app.authPage.register({
             name: "AStest1",
             surname: "AStest1",
-            email: `ArtemSydorenko${randomNumber()}@gmail.com`,
+            email: `ArtemSydorenko${randomNumber+1}@gmail.com`,
             password: "Pa55word",
             phone: "+380991111111",
             birthDate: "12/12/1989",

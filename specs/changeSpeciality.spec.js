@@ -12,7 +12,7 @@ describe('Profile: ', function () {
         await browser.reloadSession();
     });
 
-    xit('should be able to change speciality', async function () {
+    it('should be able to change speciality', async function () {
         await app.authPage.login({
             email: "ArtemSydorenko@gmail.com",
             password: "Pa55word"

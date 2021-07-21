@@ -1,8 +1,8 @@
 const { expect } = require('chai');
 const { App } = require('../src/pages');
 const randomNumber = Math.floor(Math.random() * 100).toString();
-const clinicName = `AS Hospital ${randomNumber}`;
-const clinicAddress = `Rusewelt Ave, ${randomNumber}`;
+const clinicName = `RS Hospital ${randomNumber}`;
+const clinicAddress = `Lincoln Ave, ${randomNumber}`;
 
 const app = new App();
 describe('Clinic: ', function () {
@@ -25,7 +25,6 @@ describe('Clinic: ', function () {
             name: clinicName,
             address: clinicAddress
         });
-
        
         const createdClinic = await app.clinicsPage.findClinic({ name: clinicName });
 

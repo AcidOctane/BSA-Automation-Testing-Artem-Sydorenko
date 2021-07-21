@@ -12,7 +12,7 @@ describe('Profile: ', function () {
         await browser.reloadSession();
     });
 
-    xit('should be able to change clinic', async function () {
+    it('should be able to change clinic', async function () {
         await app.authPage.login({
             email: "ArtemSydorenko@gmail.com",
             password: "Pa55word"
@@ -25,7 +25,6 @@ describe('Profile: ', function () {
         await app.profilePage.setClinic();
 
         const newClinic = await app.profilePage.getActiveClinic();
-
 
         expect(newClinic).to.not.be.equal(oldClinic);
     });
