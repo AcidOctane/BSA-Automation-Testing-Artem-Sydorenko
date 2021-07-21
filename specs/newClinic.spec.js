@@ -1,5 +1,8 @@
 const { expect } = require('chai');
 const { App } = require('../src/pages');
+const randomNumber = Math.floor(Math.random() * 100).toString();
+const clinicName = `AS Hospital ${randomNumber}`;
+const clinicAddress = `Rusewelt Ave, ${randomNumber}`;
 
 const app = new App();
 describe('Clinic: ', function () {
@@ -18,8 +21,15 @@ describe('Clinic: ', function () {
         });
 
         await app.doctorsPage.goToClinics();
-        await browser.pause(5000);
+        await app.clinicsPage.addNewClinic({
+            name: clinicName,
+            address: clinicAddress
+        });
 
-        expect(1).to.be.equal(1);
+       
+        const createdClinic = await app.clinicsPage.findClinic({ name: clinicName });
+
+        expect(createdClinic).to.exist;
+        expect(createdClinic).to.contain(clinicAddress);
     });
 })
